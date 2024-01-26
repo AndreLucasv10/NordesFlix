@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import '/src/assets/login.css'
 const Login = () => {
   const [dadosFormulario1, setDadosFormulario1] = useState('')
   const [dadosFormulario2, setDadosFormulario2] = useState('')
@@ -61,17 +61,16 @@ const Login = () => {
   }
   return (
     <div className='login'>
-    <form onSubmit={validateToken}>
-      <label htmlFor="">
-        Usuario: 
-        <input type="text" value={dadosFormulario1} onChange={(e) => setDadosFormulario1(e.target.value)} />
-        </label>
-        <label htmlFor="">
-          Senha: 
-          <input type="text" value={dadosFormulario2} onChange={(e) => setDadosFormulario2(e.target.value)} />
-        </label>
+      <div className='container-login'>
+      <div className='login-titulo'><h1>NordesFlix</h1></div>
+    <form className='form' onSubmit={validateToken}>
+        <p>Usuario</p>
+        <input type="text" value={dadosFormulario1} placeholder='Digite seu usuario' onChange={(e) => setDadosFormulario1(e.target.value)} />
+        <p>senha</p>
+        <input type="text" value={dadosFormulario2} placeholder='Digite sua senha'  onChange={(e) => setDadosFormulario2(e.target.value)} />
         <button  type='submit'>Login</button>
     </form>
+      </div>
     </div>
   )
 }
