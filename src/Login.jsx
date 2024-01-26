@@ -6,12 +6,6 @@ const Login = () => {
   const [tokenRequest, settokenRequest] = useState('')
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Dados do formulário:', dadosFormulario1)
-    console.log('Dados do formulário:', dadosFormulario2)
-  }
-
   const options = {
     method: 'GET',
     headers: {
@@ -65,8 +59,6 @@ const Login = () => {
       console.log(erro)
     }
   }
-
-  console.log(tokenRequest)
   return (
     <div className='login'>
     <form onSubmit={validateToken}>
