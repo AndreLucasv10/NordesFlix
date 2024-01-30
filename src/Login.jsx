@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '/src/assets/login.css'
+import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const [dadosFormulario1, setDadosFormulario1] = useState('')
   const [dadosFormulario2, setDadosFormulario2] = useState('')
   const [tokenRequest, settokenRequest] = useState('')
+  const navigate = useNavigate()
 
 
   const options = {
@@ -47,10 +49,10 @@ const Login = () => {
     e.preventDefault()
     try{
       const autorizetoken = await fetch(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=023be51ae786b61c9ece602c9e74de48&request_token=${tokenRequest}`, options2);
-
       if (autorizetoken.ok) {
         const data = await autorizetoken.json();
         console.log(data);
+        navigate('/Home')
       } else {
         console.error('Erro na solicitação:', autorizetoken.status);
       }
@@ -59,6 +61,7 @@ const Login = () => {
       console.log(erro)
     }
   }
+  
   return (
     <div className='login'>
       <div className='container-login'>
