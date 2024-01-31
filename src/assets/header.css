@@ -1,0 +1,32 @@
+ul,li,a{
+    list-style: none;
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background: #aa2913;
+    padding: 20px;
+}
+
+h1{
+    margin-left: 20px;
+}
+
+ul{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 0px 20px 0px 0px;
+}
+
+.profile img{ 
+    width: 20px;
+}
+
+a{
+    color: white;
+}
