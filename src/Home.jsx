@@ -4,7 +4,6 @@ import '/src/assets/home.css'
 const Home = () => {
   const [movies, setmovies] = useState([])
   const vote =   document.getElementsByClassName('vote')
-
   const options = {
     method: 'GET',
     headers: {
@@ -25,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     RequestPopularMovies()
   },[])
-
+console.log(movies)
   return (
     <div>
     <Header />
@@ -42,6 +41,7 @@ const Home = () => {
         </div>
       })}
       </div>
+
     </main>
     </div>    
   )
