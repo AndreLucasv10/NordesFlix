@@ -1,5 +1,5 @@
 .img img {
-    max-width:400px;
+    max-width:300px;
     border-radius: 16px;
 }
 
@@ -11,7 +11,11 @@
     position: absolute;
     bottom: 20px;
     left: 16px;
-    color: black;
+    color: white;
+    background: #aa2913;
+    font-weight: bold;
+    border-radius: 2px;
+    padding: 2px;
 }
 
 .movies-list{
@@ -26,4 +30,14 @@ main h1{
     margin-top: 20px;
     display: flex;
     justify-content: center;
+}
+
+.movies{
+    transition: 0.4s;
+    border-radius: 16px;
+}
+
+.movies:hover{
+    transform: scale(1.2);
+    z-index: 1;
 }

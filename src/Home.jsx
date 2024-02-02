@@ -3,6 +3,7 @@ import Header from './Header'
 import '/src/assets/home.css'
 const Home = () => {
   const [movies, setmovies] = useState([])
+  const vote =   document.getElementsByClassName('vote')
 
   const options = {
     method: 'GET',
@@ -25,22 +26,19 @@ const Home = () => {
     RequestPopularMovies()
   },[])
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
-  
   return (
     <div>
     <Header />
     <main>
       <h1>Popular Movies</h1>
       <div className='movies-list'>{movies.map((a) =>{
-       return <div key={a.id}>
+       return <div className='movies' key={a.id}>
         <div className='img'>
         <img src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`} alt="" />
-        <span>{a.vote_average}</span>
+        <span 
+  style={{
+    background: a.vote_average.toFixed(1) < 4 ? 'red' : a.vote_average.toFixed(1) < 7 ? 'orange' : 'green'}}className='vote'> {a.vote_average.toFixed(1)}</span>
         </div>
-        <p>{a.title}</p>
         </div>
       })}
       </div>
