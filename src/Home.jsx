@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import Header from './Header'
 import '/src/assets/home.css'
+import '/src/assets/footer.css'
+import Footer from './footer'
 const Home = () => {
   const [movies, setmovies] = useState([])
   const vote =   document.getElementsByClassName('vote')
@@ -41,8 +43,8 @@ console.log(movies)
         </div>
       })}
       </div>
-
     </main>
+      <Footer />
     </div>    
   )
 }

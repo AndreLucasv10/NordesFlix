@@ -42,3 +42,19 @@ main h1{
     transform: scale(1.2);
     z-index: 1;
 }
+
+@media(max-width: 900px){
+    .img img{
+        max-width: 150px;
+    }
+}
+
+@media(max-width: 570px){
+    .img img{
+        max-width: 120px;
+    }
+
+    .img span{
+        font-size: 0.625rem;
+    }
+}
