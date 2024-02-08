@@ -58,3 +58,34 @@ main h1{
         font-size: 0.625rem;
     }
 }
+
+.pages{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+
+}
+
+.pages button {
+    background: #aa2913;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pages span{
+    font-weight: bold;
+    font-size: 1.675rem;
+    color: #aa2913;
+    
+}
+
+.pages div{
+    padding: 10px;
+    border-radius: 50%;
+}

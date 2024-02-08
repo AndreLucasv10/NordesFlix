@@ -5,7 +5,7 @@ import '/src/assets/footer.css'
 import Footer from './footer'
 const Home = () => {
   const [movies, setmovies] = useState([])
-  const vote =   document.getElementsByClassName('vote')
+  let [pages , setpages] = useState(1)
   const options = {
     method: 'GET',
     headers: {
@@ -16,17 +16,19 @@ const Home = () => {
 
   async function RequestPopularMovies(){
     try{
-      let MoviesRequest = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+      let MoviesRequest = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pages}`, options)
       let PopularMovies = await MoviesRequest.json()
       setmovies(PopularMovies.results)
+      setpages(PopularMovies.page)
+      console.log(PopularMovies)  
     }catch(erro){
       console.log(erro)
     }
   }
   useEffect(() => {
     RequestPopularMovies()
-  },[])
-console.log(movies)
+  },[pages]);  
+
   return (
     <div>
     <Header />
@@ -42,6 +44,15 @@ console.log(movies)
         </div>
         </div>
       })}
+      </div>
+      <div className='pages'>
+      <button className='PrevButton' onClick={() => { setpages(pages - 1); }} disabled={pages === 1}>Previous page</button>
+      <div>
+      <div className='shadow'>
+        <span>{pages}</span>
+      </div>
+      </div>
+        <button onClick={() => setpages(pages + 1)}>Next page</button>
       </div>
     </main>
       <Footer />
