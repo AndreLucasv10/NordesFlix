@@ -1,0 +1,57 @@
+.img{
+  position: relative;
+}
+
+.img img{
+  max-width: 200px;
+  translate: none;
+}
+
+.carousel{
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.seta{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.seta img{
+  width: 50px;
+}
+
+.seta button{
+  background: none;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+.container{
+  position: relative;
+}
+
+.seta-Right{
+  position: absolute;
+  top: 35%;
+  right: 1%;
+  z-index: 9999;
+}
+
+.seta-Left{
+  position: absolute;
+  top: 35%;
+  left: 1%;
+  z-index: 9999;
+}
