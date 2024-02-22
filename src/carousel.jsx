@@ -1,8 +1,10 @@
 import React, { useState,useEffect, useRef } from 'react'
 import '/src/assets/slide.css'
-const Slide = () => {
+import { useNavigate } from 'react-router-dom'
+const Carousel = ({Request, title, Navigate}) => {
     const [movies, setmovies] = useState([])
     const carousel = useRef(null)
+    const navigate = useNavigate()
     const options = {
         method: 'GET',
         headers: {
@@ -11,19 +13,19 @@ const Slide = () => {
         }
       };
 
-    async function RequestPopularMovies(){
+    async function RequestMovies(){
         try{
-          let MoviesRequest = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`, options)
-          let PopularMovies = await MoviesRequest.json()
-          setmovies(PopularMovies.results)
-          console.log(PopularMovies)  
+          let MoviesRequest = await fetch(Request, options)
+          let Movies = await MoviesRequest.json()
+          setmovies(Movies.results)
+          console.log(Movies)  
         }catch(erro){
           console.log(erro)
         }
       }
       useEffect(() => {
-        RequestPopularMovies()
-      },[]);
+        RequestMovies()
+      },[Request]);
 
       function handleClickLeft(e){
         e.preventDefault();
@@ -44,11 +46,12 @@ const Slide = () => {
 
   return (
     <div className='container'>
+        <h1>{title}</h1>
         <div className='carousel' ref={carousel}>
           {movies.map((a) =>{
             return <div className='movies' key={a.id}>
         <div className='img'>
-        <img src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`} alt="" />
+        <img className='carousel-img' src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`} alt="" />
         <span style={{background: a.vote_average.toFixed(1) < 4 ? 'red' : a.vote_average.toFixed(1) < 7 ? 'orange' : 'green'}}className='vote'> {a.vote_average.toFixed(1)}</span>
         </div>
         <div>
@@ -57,11 +60,12 @@ const Slide = () => {
     })}
         </div>
         <div className='seta' >
-          <button className='seta-Left' onClick={handleClickLeft} > <img src="/src/assets/img/seta-esquerda.png" alt="Scroll Left" />  </button>
-          <button className='seta-Right' onClick={handleClickRight}> <img src="/src/assets/img/seta-direita.png" alt="Scroll Right" />  </button>
+          <button className='seta-Left' onClick={handleClickLeft} > <img src="/src/assets/img/seta-esquerda.png" alt="Scroll Left" /> </button>
+          <button className='seta-Right' onClick={handleClickRight}> <img src="/src/assets/img/seta-direita.png" alt="Scroll Right" /> </button>
         </div>
+        <div><button onClick={() => navigate(Navigate)}>Ver mais...</button></div>
             </div>
   )
 }
 
-export default Slide
+export default Carousel

@@ -1,62 +1,19 @@
-import React, { useState,useEffect } from 'react'
+import React from 'react'
 import Header from './Header'
-import '/src/assets/home.css'
-import '/src/assets/footer.css'
 import Footer from './footer'
-const Home = () => {
-  const [movies, setmovies] = useState([])
-  let [pages , setpages] = useState(1)
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjNiZTUxYWU3ODZiNjFjOWVjZTYwMmM5ZTc0ZGU0OCIsInN1YiI6IjYyZWFjNmQyODU2NmQyMDA1ZmIwNmI0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2ATRUTmlErPmaltiy85QxlMv8oHBpXPry6Qi8eC09sA'
-    }
-  };
+import Carousel from './carousel'
 
-  async function RequestPopularMovies(){
-    try{
-      let MoviesRequest = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pages}`, options)
-      let PopularMovies = await MoviesRequest.json()
-      setmovies(PopularMovies.results)
-      setpages(PopularMovies.page)
-      console.log(PopularMovies)  
-    }catch(erro){
-      console.log(erro)
-    }
-  }
-  useEffect(() => {
-    RequestPopularMovies()
-  },[pages]);  
+const Home = () => {
+  
 
   return (
     <div>
-    <Header />
-    <main>
-      <h1>Popular Movies</h1>
-      <div className='movies-list'>{movies.map((a) =>{
-       return <div className='movies' key={a.id}>
-        <div className='img'>
-        <img src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`} alt="" />
-        <span 
-  style={{
-    background: a.vote_average.toFixed(1) < 4 ? 'red' : a.vote_average.toFixed(1) < 7 ? 'orange' : 'green'}}className='vote'> {a.vote_average.toFixed(1)}</span>
-        </div>
-        </div>
-      })}
-      </div>
-      <div className='pages'>
-      <button className='PrevButton' onClick={() => { setpages(pages - 1); }} disabled={pages === 1}>Previous page</button>
+      <Header />
       <div>
-      <div className='shadow'>
-        <span>{pages}</span>
+        <Carousel Navigate={'/PopularMovies'} title={'Popular Movies'} Request={`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`} />
       </div>
-      </div>
-        <button onClick={() => setpages(pages + 1)}>Next page</button>
-      </div>
-    </main>
       <Footer />
-    </div>    
+    </div>
   )
 }
 

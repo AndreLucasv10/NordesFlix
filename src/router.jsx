@@ -1,12 +1,13 @@
 import {Routes, Route} from "react-router-dom" ;
 import Login from "./Login";
 import Home from "./Home";
-
+import PopularMovies from "./PopularMovies";
 function MainRoutes(){
     return(
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/Home" element={<Home />}/>
+            <Route path="/PopularMovies" element={<PopularMovies />}/>
         </Routes>
     )
 }

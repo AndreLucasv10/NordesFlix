@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.img img{
+.img .carousel-img{
   max-width: 200px;
   translate: none;
 }
