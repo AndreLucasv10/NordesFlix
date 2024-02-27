@@ -4,7 +4,6 @@
 
 .img .carousel-img{
   max-width: 200px;
-  translate: none;
 }
 
 .carousel{
@@ -18,7 +17,6 @@
 .seta{
   display: flex;
   justify-content: space-between;
-  padding: 20px;
 }
 
 .seta img{
@@ -29,7 +27,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.8);
+  background: #ffffffcc;
   border-radius: 12px;
   
 }
@@ -44,14 +42,44 @@
 
 .seta-Right{
   position: absolute;
-  top: 35%;
+  top: 45%;
   right: 1%;
   z-index: 9999;
 }
 
 .seta-Left{
   position: absolute;
-  top: 35%;
+  top: 45%;
   left: 1%;
   z-index: 9999;
+}
+
+.header-carousel{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.header-carousel button {
+  border: none;
+  background: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.1s;
+  
+}
+
+.header-carousel button:hover{
+  color: #aa2913;
+  transform: scale(1.05);
+}
+
+.carousel-movies{
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.carousel-movies:hover{
+  transform: scale(1.05);
 }

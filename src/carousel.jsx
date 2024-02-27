@@ -1,6 +1,7 @@
 import React, { useState,useEffect, useRef } from 'react'
 import '/src/assets/slide.css'
 import { useNavigate } from 'react-router-dom'
+
 const Carousel = ({Request, title, Navigate}) => {
     const [movies, setmovies] = useState([])
     const carousel = useRef(null)
@@ -46,24 +47,24 @@ const Carousel = ({Request, title, Navigate}) => {
 
   return (
     <div className='container'>
+      <div className='header-carousel'>
         <h1>{title}</h1>
+        <button onClick={() => navigate(Navigate, { replace: true, state:{ Request } })}>Ver mais...</button>
+      </div>
         <div className='carousel' ref={carousel}>
           {movies.map((a) =>{
-            return <div className='movies' key={a.id}>
+          return <div className='carousel-movies' key={a.id}>
         <div className='img'>
         <img className='carousel-img' src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`} alt="" />
-        <span style={{background: a.vote_average.toFixed(1) < 4 ? 'red' : a.vote_average.toFixed(1) < 7 ? 'orange' : 'green'}}className='vote'> {a.vote_average.toFixed(1)}</span>
+        <span style={{background: a.vote_average.toFixed(1) < 4 ? 'red' : a.vote_average.toFixed(1) < 7 ? 'orange' : 'green'}}className='vote'> {a.vote_average.toFixed(1)}</span>  
         </div>
-        <div>
-        </div>
-            </div>
+          </div>
     })}
         </div>
         <div className='seta' >
           <button className='seta-Left' onClick={handleClickLeft} > <img src="/src/assets/img/seta-esquerda.png" alt="Scroll Left" /> </button>
           <button className='seta-Right' onClick={handleClickRight}> <img src="/src/assets/img/seta-direita.png" alt="Scroll Right" /> </button>
         </div>
-        <div><button onClick={() => navigate(Navigate)}>Ver mais...</button></div>
             </div>
   )
 }
