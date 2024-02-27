@@ -3,13 +3,11 @@ import Header from './Header';
 import '/src/assets/home.css';
 import '/src/assets/footer.css';
 import Footer from './footer';
-import { useLocation } from 'react-router-dom';
-
+import { GlobalContext } from './GlobalContext'
 const PopularMovies = () => {
-  const location = useLocation();
-  const Request = location.state?.Request;
   const [movies, setmovies] = useState([]);
   const [pages, setpages] = useState(1);
+  const globalUrl = React.useContext(GlobalContext)
   const options = {
     method: 'GET',
     headers: {
@@ -18,10 +16,9 @@ const PopularMovies = () => {
         'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjNiZTUxYWU3ODZiNjFjOWVjZTYwMmM5ZTc0ZGU0OCIsInN1YiI6IjYyZWFjNmQyODU2NmQyMDA1ZmIwNmI0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2ATRUTmlErPmaltiy85QxlMv8oHBpXPry6Qi8eC09sA',
     },
   };
-  console.log(Request);
   async function RequestPopularMovies() {
     try {
-      let MoviesRequest = await fetch(`${Request}`, options);
+      let MoviesRequest = await fetch(`${globalUrl.url}&page=${pages}`, options);
       let PopularMovies = await MoviesRequest.json();
       setmovies(PopularMovies.results);
       setpages(PopularMovies.page);
@@ -30,10 +27,9 @@ const PopularMovies = () => {
       console.log(erro);
     }
   }
-
   useEffect(() => {
     RequestPopularMovies();
-  }, [pages]);
+  }, [globalUrl.url ,pages]);
 
   return (
     <div>
