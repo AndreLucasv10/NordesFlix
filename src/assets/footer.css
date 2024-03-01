@@ -2,6 +2,7 @@
     background: #aa2913;
     display: flex;
     justify-content: center;
+    flex: 1;
     margin: 0 auto;
     padding: 32px;
     font-weight: bold;

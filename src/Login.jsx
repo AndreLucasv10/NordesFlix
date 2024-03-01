@@ -22,6 +22,7 @@ const Login = () => {
        let  tokenRequest = await fetch ('https://api.themoviedb.org/3/authentication/token/new?api_key=023be51ae786b61c9ece602c9e74de48', options)
        let requestToken = await tokenRequest.json()
        settokenRequest(requestToken.request_token)
+       
       }
       catch(erro){
         console.log(erro)
@@ -53,6 +54,7 @@ const Login = () => {
         const data = await autorizetoken.json();
         console.log(data);
         navigate('/Home')
+        
       } else {
         console.error('Erro na solicitação:', autorizetoken.status);
       }
