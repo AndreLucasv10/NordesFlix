@@ -1,8 +1,8 @@
 import  { useEffect, useState } from 'react'
 import './assets/favoritemovies.css'
 
-const FavoriteMovies = () => {
-    const [favoriteMovies, SetFavoriteMovies] = useState([])
+const FavoriteSeries = () => {
+    const [favoriteSeries, SetFavoriteSeries] = useState([])
 
     const options = {
         method: 'GET',
@@ -12,23 +12,23 @@ const FavoriteMovies = () => {
         }
       };
 
-    async function RequestFavoriteMovies(){
+    async function RequestFavoriteSeries(){
         try{
-            const requestFavoriteMovies = await fetch('https://api.themoviedb.org/3/account/13768643/favorite/movies?language=en-US&page=1&sort_by=created_at.asc', options)
-            const FavoriteMovies = await requestFavoriteMovies.json()
-            SetFavoriteMovies(FavoriteMovies.results)
+            const requestFavoriteSeries = await fetch('https://api.themoviedb.org/3/account/13768643/favorite/tv?language=en-US&page=1&sort_by=created_at.asc', options)
+            const FavoriteSeries = await requestFavoriteSeries.json()
+            SetFavoriteSeries(FavoriteSeries.results)
         } catch(erro){
             console.log(erro)
         }
     }
-console.log(favoriteMovies)
+console.log(favoriteSeries)
     useEffect(() =>{
-        RequestFavoriteMovies()
+        RequestFavoriteSeries()
     }, [])
 
   return (
     <div className='list-favorite-movies'>
-    {favoriteMovies.map((a) => {
+    {favoriteSeries.map((a) => {
       return (
         <div key={a.id} className='img-favorite-movies'>
           <div>
@@ -58,4 +58,4 @@ console.log(favoriteMovies)
   )
 }
 
-export default FavoriteMovies
+export default FavoriteSeries

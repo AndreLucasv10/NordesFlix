@@ -1,11 +1,10 @@
-import React from 'react'
 import Header from './Header'
 import Footer from './footer'
 import Carousel from './carousel'
-
+import './/assets/home.css'
 const Home = () => {
   return (
-    <div>
+    <div className='container-home'>
       <Header />
       <div>
         <Carousel Navigate={'/PopularMovies'} title={'Popular Movies'} Request={`https://api.themoviedb.org/3/movie/popular?language=en-US`} />

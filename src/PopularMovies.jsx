@@ -8,34 +8,38 @@ const PopularMovies = () => {
   const [movies, setmovies] = useState([]);
   const [pages, setpages] = useState(1);
   const globalUrl = React.useContext(GlobalContext)
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjNiZTUxYWU3ODZiNjFjOWVjZTYwMmM5ZTc0ZGU0OCIsInN1YiI6IjYyZWFjNmQyODU2NmQyMDA1ZmIwNmI0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2ATRUTmlErPmaltiy85QxlMv8oHBpXPry6Qi8eC09sA',
-    },
-  };
-  async function RequestPopularMovies() {
-    try {
-      let MoviesRequest = await fetch(`${globalUrl.url}&page=${pages}`, options);
-      let PopularMovies = await MoviesRequest.json();
-      setmovies(PopularMovies.results);
-      setpages(PopularMovies.page);
-      console.log(PopularMovies);
-    } catch (erro) {
-      console.log(erro);
-    }
-  }
+  
   useEffect(() => {
+    
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjNiZTUxYWU3ODZiNjFjOWVjZTYwMmM5ZTc0ZGU0OCIsInN1YiI6IjYyZWFjNmQyODU2NmQyMDA1ZmIwNmI0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2ATRUTmlErPmaltiy85QxlMv8oHBpXPry6Qi8eC09sA',
+      },
+    };
+
+    async function RequestPopularMovies() {
+        try {
+            let MoviesRequest = await fetch(`${globalUrl.url}&page=${pages}`, options);
+            let PopularMovies = await MoviesRequest.json();
+            setmovies(PopularMovies.results);
+            setpages(PopularMovies.page);
+            console.log(PopularMovies);
+        } catch (erro) {
+            console.log(erro);
+        }
+    }
+
     RequestPopularMovies();
-  }, [globalUrl.url ,pages]);
+}, [globalUrl.url, pages]);
 
   return (
     <div>
       <Header />
       <main>
-        <h1>Popular Movies</h1>
+        <h1>Movies</h1>
         <div className='movies-list'>
           {movies.map((a) => {
             return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import '/src/assets/login.css'
 import { useNavigate } from 'react-router-dom'
 const Login = () => {
