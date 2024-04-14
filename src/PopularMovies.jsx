@@ -45,10 +45,10 @@ const PopularMovies = () => {
             return (
               <div className='movies' key={a.id}>
                 <div className='img'>
-                  <img
+                  <a href=""><img
                     src={`https://image.tmdb.org/t/p/w500/${a.poster_path}`}
                     alt=''
-                  />
+                  /></a>
                   <span
                     style={{
                       background:
