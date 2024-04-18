@@ -3,11 +3,14 @@ import Header from './Header';
 import '/src/assets/home.css';
 import '/src/assets/footer.css';
 import Footer from './footer';
-import { GlobalContext } from './GlobalContext'
+import { GlobalContext } from './GlobalContext';
+import { useNavigate } from 'react-router-dom'
+
 const PopularMovies = () => {
   const [movies, setmovies] = useState([]);
   const [pages, setpages] = useState(1);
-  const globalUrl = React.useContext(GlobalContext)
+  const globalUrl = React.useContext(GlobalContext);
+  const navigate = useNavigate()
   
   useEffect(() => {
     

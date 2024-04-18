@@ -3,6 +3,7 @@ import Login from "./Login";
 import Home from "./Home";
 import PopularMovies from "./PopularMovies";
 import Profile from "./Profile";
+import { MovieDetails } from "./MovieDetails";
 function MainRoutes(){
     return(
         <Routes>
@@ -10,6 +11,7 @@ function MainRoutes(){
             <Route path="/Home" element={<Home />}/>
             <Route path="/PopularMovies" element={<PopularMovies />}/>
             <Route path="/Profile" element={<Profile />}/>
+            <Route path="/movie" element={<MovieDetails />} />
         </Routes>
     )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '/src/assets/slide.css';
 import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from './GlobalContext';
+import { MovieDetails } from './MovieDetails';
 
 const Carousel = ({ Request, title, Navigate }) => {
   const [movies, setMovies] = useState([]);
@@ -44,7 +45,15 @@ const Carousel = ({ Request, title, Navigate }) => {
     console.log(carousel.current.offsetWidth);
   }
 
+  async function targetMovie(event) {
+    const movieId = event.currentTarget.getAttribute('data-value');
+    console.log(movieId);
+    navigate('/movie');
+    <MovieDetails movie={movieId} />
+    
+  }
   return (
+
     <div className='container'>
       <div className='header-carousel'>
         <h1>{title}</h1>
@@ -52,7 +61,7 @@ const Carousel = ({ Request, title, Navigate }) => {
       </div>
       <div className='carousel' ref={carousel}>
         {movies.map((movie) => (
-          <div className='carousel-movies' key={movie.id}>
+          <div onClick={targetMovie} className='carousel-movies' key={movie.id} data-value={movie.id}>
             <div className='img'>
               <img className='carousel-img' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
               <span style={{ background: movie.vote_average.toFixed(1) < 4 ? 'red' : movie.vote_average.toFixed(1) < 7 ? 'orange' : 'green' }} className='vote'>
@@ -62,6 +71,7 @@ const Carousel = ({ Request, title, Navigate }) => {
           </div>
         ))}
       </div>
+
       <div className='seta'>
         <button className='seta-Left' onClick={handleClickLeft}>
           <img src="/src/assets/img/seta-esquerda.png" alt="Scroll Left" />
@@ -70,6 +80,7 @@ const Carousel = ({ Request, title, Navigate }) => {
           <img src="/src/assets/img/seta-direita.png" alt="Scroll Right" />
         </button>
       </div>
+
     </div>
   );
 }
