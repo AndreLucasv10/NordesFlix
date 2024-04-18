@@ -11,7 +11,7 @@ function MainRoutes(){
             <Route path="/Home" element={<Home />}/>
             <Route path="/PopularMovies" element={<PopularMovies />}/>
             <Route path="/Profile" element={<Profile />}/>
-            <Route path="/movie" element={<MovieDetails />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
     )
 }

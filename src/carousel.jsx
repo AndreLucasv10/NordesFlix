@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '/src/assets/slide.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { GlobalContext } from './GlobalContext';
-import { MovieDetails } from './MovieDetails';
 
 const Carousel = ({ Request, title, Navigate }) => {
   const [movies, setMovies] = useState([]);
@@ -18,42 +17,34 @@ const Carousel = ({ Request, title, Navigate }) => {
     },
   };
 
-  async function requestMovies() {
+  const requestMovies = async () => {
     try {
-      let moviesRequest = await fetch(Request, options);
-      let moviesData = await moviesRequest.json();
+      const moviesRequest = await fetch(Request, options);
+      const moviesData = await moviesRequest.json();
       setMovies(moviesData.results);
       console.log(moviesData);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     requestMovies();
   }, [Request]);
 
-  function handleClickLeft(e) {
+  const handleClickLeft = (e) => {
     e.preventDefault();
     carousel.current.scrollLeft -= carousel.current.offsetWidth;
     console.log(carousel.current.offsetWidth);
-  }
+  };
 
-  function handleClickRight(e) {
+  const handleClickRight = (e) => {
     e.preventDefault();
     carousel.current.scrollLeft += carousel.current.offsetWidth;
     console.log(carousel.current.offsetWidth);
-  }
+  };
 
-  async function targetMovie(event) {
-    const movieId = event.currentTarget.getAttribute('data-value');
-    console.log(movieId);
-    navigate('/movie');
-    <MovieDetails movie={movieId} />
-    
-  }
   return (
-
     <div className='container'>
       <div className='header-carousel'>
         <h1>{title}</h1>
@@ -61,14 +52,14 @@ const Carousel = ({ Request, title, Navigate }) => {
       </div>
       <div className='carousel' ref={carousel}>
         {movies.map((movie) => (
-          <div onClick={targetMovie} className='carousel-movies' key={movie.id} data-value={movie.id}>
+          <Link to={`/movie/${movie.id}`} className='carousel-movies' key={movie.id}>
             <div className='img'>
               <img className='carousel-img' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" />
               <span style={{ background: movie.vote_average.toFixed(1) < 4 ? 'red' : movie.vote_average.toFixed(1) < 7 ? 'orange' : 'green' }} className='vote'>
                 {movie.vote_average.toFixed(1)}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -80,9 +71,8 @@ const Carousel = ({ Request, title, Navigate }) => {
           <img src="/src/assets/img/seta-direita.png" alt="Scroll Right" />
         </button>
       </div>
-
     </div>
   );
-}
+};
 
 export default Carousel;
