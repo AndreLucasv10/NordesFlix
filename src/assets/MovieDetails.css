@@ -1,0 +1,16 @@
+.flex-layout{
+    max-width: 1300px;
+    display: flex;
+    justify-content: center;
+    margin: 48px auto;
+}
+
+.details{
+    display: flex;
+}
+
+.titles{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

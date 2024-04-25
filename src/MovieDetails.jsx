@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from './Header';
 import Footer from "./footer";
+import './assets/MovieDetails.css';
 export const MovieDetails = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
@@ -29,9 +30,41 @@ export const MovieDetails = () => {
     requestMovieDetails();
   }, [id]);
 
+  const minutes = movieDetails.runtime
+  const converter = (minutes) =>{
+    const hours = Math.floor(minutes / 60);
+    const min = minutes % 60
+    const texthours = (`00${hours}`).slice(-2);
+    const textmin = (`00${min}`).slice(-2);
+    return `${texthours}:${textmin} `
+  }
+
   return (
     <div>
       <Header />
+      <div className="flex-layout">
+          <img src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} />
+        <div >
+          <div>
+            <div className="titles">
+            <h1>{movieDetails.original_title}</h1>
+            <p>{movieDetails.title}</p>
+            </div>
+            <ul>
+              <li>{movieDetails.release_date}</li>
+              <li>{movieDetails.status}</li>
+              <li>{converter(minutes)}</li>
+              <li>{movieDetails.vote_average}</li>
+              <li>{movieDetails.vote_count}</li>
+            </ul>  
+          </div>
+          <div>
+        <ul className="details">
+          <li>{movieDetails.overview}</li>
+        </ul>
+          </div>
+      </div>
+      </div>
       <Footer />
     </div>
   )
