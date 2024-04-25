@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import Header from './Header';
+import Footer from "./footer";
 export const MovieDetails = () => {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
@@ -29,6 +30,9 @@ export const MovieDetails = () => {
   }, [id]);
 
   return (
-    <div>teste</div>
+    <div>
+      <Header />
+      <Footer />
+    </div>
   )
 }
